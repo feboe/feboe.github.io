@@ -1,0 +1,191 @@
+sections:
+  - id: energy
+    title: Energy Systems & Data
+    intro: Energy forecasting, market analysis, and optimization grounded in real operating data.
+    projects:
+      - title: Smart Building Energy Optimization
+        context: Personal Project
+        featured: true
+        challenge: Reconstruct a consistent smart-building energy balance, forecast load for the next 24 hours, and evaluate how battery-control strategies affect local energy use and simulated operating costs.
+        approach:
+          - Built a PostgreSQL-backed workflow for heterogeneous building measurements and German day-ahead prices.
+          - Evaluated leakage-safe, 24-hour load forecasts using daily- and weekly-naive baselines and Histogram Gradient Boosting with chronological validation.
+          - Compared a transparent dispatch heuristic with a physically constrained, 24-hour rolling-horizon linear program under fixed- and dynamic-price scenarios.
+          - Conducted sensitivity and robustness experiments covering battery capacity, hourly versus 15-minute simulation, terminal state-of-charge valuation, auxiliary consumption, and self-discharge.
+        outcome: The HGB model achieved 8.21% WAPE on the held-out 2021 test period and outperformed both seasonal baselines. In the separate battery-analysis branch, rolling-horizon optimization showed its clearest advantage when dynamic prices and grid charging created intertemporal trade-offs, while a simpler heuristic performed similarly in fixed-price surplus-only operation. Follow-up experiments showed that temporal resolution and auxiliary consumption can materially affect the estimated storage value.
+        note: Forecasting and battery dispatch are separate validated branches of the workflow. The displayed strategy comparison is the initial hourly baseline for the subsequent sensitivity experiments. Savings are measured against the corresponding no-battery scenario and exclude investment, financing, maintenance, replacement, and demand-charge costs.
+        methods:
+          - Python
+          - PostgreSQL
+          - Time-series forecasting
+          - Histogram Gradient Boosting
+          - Chronological validation
+          - Battery simulation
+          - Linear programming
+          - PuLP
+        repository: https://github.com/feboe/smart-building-energy-optimization
+        repository_label: View project repository
+        images:
+          - src: /assets/images/projects/smart-building-battery-strategies.png
+            alt: Bar chart comparing simulated annual operating savings across battery dispatch strategies for a 1,000 kWh system.
+
+      - title: Negative Day-Ahead Price Analysis
+        context: Personal Project
+        challenge: Determine when negative electricity prices occur in the German–Luxembourg bidding zone and which system and calendar conditions are associated with them.
+        approach:
+          - Built a Python and PostgreSQL pipeline for SMARD price, demand, wind, solar, and calendar data from 2022–2025.
+          - Created SQL quality and analysis views for residual load, negative-price hours, event duration, price intensity, and calendar patterns.
+          - Documented the limits of the exploratory analysis, including simplified residual load and changes in market time resolution.
+        outcome: The analysis identified a clear increase in negative-price hours, a strong midday concentration in spring and summer, higher shares on weekends and holidays, and an association with low forecast residual load that does not explain every event. Most continuous negative-price windows lasted between one and eight hours; their median duration increased only from 4.5 hours in 2022 to 5.5 hours in 2025, indicating that the overall growth came primarily from more frequent events rather than substantially longer ones.
+        methods:
+          - Python
+          - SQL
+          - PostgreSQL
+          - ETL
+          - Time-series analysis
+          - Energy-market data
+        repository: https://github.com/feboe/energy-data-sql-pipeline
+        repository_label: View project repository
+        images:
+          - src: /assets/images/projects/negative-price-patterns.png
+            alt: Heatmap showing negative day-ahead price hours by month and local hour of day.
+
+  - id: optimization
+    title: Optimization & Simulation
+    intro: Constraint-based models and simulation environments for complex engineering operations.
+    projects:
+      - title: Industrial Coating System Optimization
+        context: Professional Project
+        challenge: Replace a legacy planning tool for a multi-stage dip-coating system in which carriers must satisfy different dwell times without crossing or blocking one another.
+        approach:
+          - Translated equipment behavior, dwell-time requirements, carrier logic, and collision avoidance into a simulation and optimization model.
+          - Used Differential Evolution to search for efficient movement strategies and compared results with the existing planning tool.
+          - Added graphical carrier-path visualization to make candidate schedules reviewable by engineers.
+        outcome: Delivered a working prototype with results comparable to the previous tool and a flexible basis for cycle-time studies, carrier sizing, and further optimization analysis.
+        methods:
+          - Python
+          - Simulation
+          - Differential Evolution
+          - Constraint modeling
+          - Engineering visualization
+
+      - title: RL-Based Paint Scheduling Optimization
+        context: Master Thesis & Professional Project
+        challenge: Sequence color-assigned parts through an industrial paint process to reduce solvent-intensive color changes while also limiting idle time.
+        approach:
+          - Modeled the process as a Gymnasium-compatible simulation environment and implemented single- and multi-agent reinforcement-learning prototypes with DQN and RLlib.
+          - Applied action masking to enforce feasible decisions and reduce avoidable standstill periods.
+          - Reimplemented the existing heuristic in Python and validated the simulation against reference production data.
+        outcome: The prototype reduced modeled solvent consumption by approximately 3% relative to the heuristic reference, with slightly longer throughput time as the measured multi-objective trade-off.
+        methods:
+          - Python
+          - Reinforcement learning
+          - DQN
+          - Ray RLlib
+          - Simulation
+          - Action masking
+
+      - title: Thermal Motor Model Parameterization
+        context: Bachelor Thesis & Professional Project
+        challenge: Develop a robust and traceable workflow for parameterizing an electric-motor thermal model from measurement data.
+        approach:
+          - Developed a MATLAB calculation tool around a time-discrete thermal simulation solved with the explicit Euler method.
+          - Used weighted regression, multiple starting values, and a structured data-preparation workflow to improve parameter robustness.
+          - Connected the tool to the existing data-processing application and documented a repeatable parameterization procedure.
+        outcome: The resulting tool and workflow entered active use in the development process and provided the basis for a documented best-practice approach.
+        methods:
+          - MATLAB
+          - Thermal simulation
+          - Explicit Euler method
+          - Weighted regression
+          - Parameter estimation
+
+  - id: decision-support
+    title: Data-Driven Engineering & Decision Support
+    intro: Production-data systems that turn measurements and engineering rules into repeatable decisions.
+    projects:
+      - title: Quality Specification Optimization & Backtesting
+        context: Professional Project
+        challenge: Assess how numerical quality specifications affect reject and rework outcomes, identify which specifications have the strongest influence, and replace a deeply nested evaluation codebase.
+        approach:
+          - Refactored the evaluation backend into modular, object-oriented components.
+          - Added historical what-if backtesting to compare candidate specification sets before applying changes in production.
+          - Analyzed individual specification effects and used Differential Evolution to explore parameter combinations for a defined reject-rate target.
+          - Added automated PDF reporting and rework evaluation based on defect types and time limits.
+        outcome: Delivered a refactored evaluation process that ran in production, together with comparison and optimization tools supporting repeatable specification analysis and data-based rework decisions. The workflow was also used to evaluate and support one specification change before its introduction into production.
+        methods:
+          - Python
+          - Backtesting
+          - Differential Evolution
+          - Object-oriented design
+          - PyLaTeX
+          - Decision support
+
+      - title: 3D Quality Data Projection & Measurement Validation
+        context: Professional Projects
+        challenge: Replace manual marking of inspection coverage with a reproducible digital projection and determine which defect-measurement method performs reliably across normal and edge cases.
+        approach:
+          - Implemented and compared a 2D-to-3D regressor and a raycasting-based projection for mapping image data onto component geometry.
+          - Built controlled test datasets and Streamlit tools to compare the new approaches with existing measurement methods.
+          - Visualized projected coverage and defect geometry with Open3D and integrated reusable backend components with an interactive frontend.
+        outcome: The projection backend entered stable production use and reduced manual marking effort. The related validation work established a preferred measurement method, documented method-specific strengths and weaknesses, and produced a decision logic for different use cases.
+        methods:
+          - Python
+          - Raycasting
+          - 2D–3D regression
+          - Open3D
+          - Streamlit
+          - Method validation
+
+      - title: Production Data Anomaly Detection
+        context: Professional Project
+        challenge: Identify unusual patterns in production and defect data without pre-existing labels marking known issue periods.
+        approach:
+          - Implemented a transparent statistical detection method using z-scores around moving averages with dynamic upper and lower thresholds.
+          - Analyzed individual components, batches, and defect categories at different aggregation levels.
+          - Created 2D trend views, 3D defect-location visualizations, and Streamlit applications for exploratory analysis.
+        outcome: Produced a reusable monitoring backend and exploratory visualizations that surfaced candidate anomalies for engineering review. Live-operation validation and trigger calibration remained necessary before operational rollout.
+        methods:
+          - Python
+          - Statistical anomaly detection
+          - Moving statistics
+          - Production analytics
+          - Streamlit
+          - 3D visualization
+
+  - id: additional
+    title: Additional Projects
+    intro: Smaller portfolio projects demonstrating adjacent optimization and applied machine-learning capabilities.
+    compact: true
+    projects:
+      - title: SLA-Aware Ticket Assignment
+        context: Personal Project
+        challenge: Assign queued tickets under capacity, language, priority, and SLA constraints without protecting urgent work at the expense of overall throughput.
+        approach:
+          - Compared heuristic dispatch policies with an OR-Tools CP-SAT scheduler that replans as queue conditions change.
+          - Evaluated throughput, waiting time, and protection of SLA-critical tickets.
+        outcome: A reproducible prototype that exposes the trade-offs between simple dispatch rules and rolling constraint optimization.
+        methods:
+          - Python
+          - OR-Tools
+          - CP-SAT
+          - Rolling-horizon scheduling
+        repository: https://github.com/feboe/sla-aware-ticket-assignment
+        repository_label: View repository
+
+      - title: Ticket Routing & Priority Prediction Service
+        context: Personal Project
+        challenge: Turn multilingual support-ticket classification into a reproducible end-to-end ML service rather than an isolated model experiment.
+        approach:
+          - Built a scikit-learn text-classification workflow with tracked experiments, an API, and a lightweight demonstration interface.
+          - Separated training, inference, service, and UI components in a containerized setup.
+        outcome: A working reference service demonstrating multilingual ticket triage and practical model delivery.
+        methods:
+          - Python
+          - scikit-learn
+          - MLflow
+          - FastAPI
+          - Streamlit
+          - Docker
+        repository: https://github.com/feboe/ticket-priority-ml-service
+        repository_label: View repository

@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg portfolio-navbar" aria-label="Primary navigation">
+  <a class="navbar-brand" href="{{ '/' | relative_url }}" aria-label="Felix Bötsch portfolio home">FB</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#portfolioNav" aria-controls="portfolioNav" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars" aria-hidden="true"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="portfolioNav">
+    <div class="navbar-nav ml-auto align-items-lg-center">
+      <a class="nav-item nav-link" href="{{ '/' | relative_url }}#energy">Energy</a>
+      <a class="nav-item nav-link" href="{{ '/' | relative_url }}#optimization">Optimization</a>
+      <a class="nav-item nav-link" href="{{ '/' | relative_url }}#decision-support">Decision Support</a>
+      <a class="nav-item nav-link" href="{{ '/' | relative_url }}#additional">Additional</a>
+      <a class="nav-item nav-link nav-icon" href="https://github.com/feboe" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      <button id="theme-toggler" class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle color theme">
+        <i class="fas fa-adjust" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</nav>

@@ -8,5 +8,8 @@ _site/
 .bundle
 Gemfile.lock
 
+# Local portfolio source notes (not published)
+projects.md
+
 # Log Files
 *.log
