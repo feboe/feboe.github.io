@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Technical Project Portfolio
+title: Felix Bötsch | Technical Project Portfolio
 description: Selected projects in energy systems, optimization, simulation, and data-driven engineering by Felix Bötsch.
 permalink: /
 ---
@@ -10,9 +10,9 @@ permalink: /
   <h1>Felix Bötsch</h1>
   <p class="hero-title">Optimization Engineer <span aria-hidden="true">|</span> Applied Data Scientist</p>
   <p class="hero-summary">
-    I develop data-driven tools for engineering decisions: from mathematical optimization and simulation
-    to energy analytics and industrial data workflows. My work focuses on translating physical constraints,
-    operational requirements, and measured data into transparent, testable solutions.
+    I build optimization, simulation, and data tools for engineering decisions across energy and industrial systems.
+    My work combines physical constraints, operational data, and transparent validation—from forecasting and
+    mathematical programming to production-facing software.
   </p>
   <div class="hero-actions" aria-label="Profile links">
     <a class="button button-primary" href="https://github.com/feboe" target="_blank" rel="noopener noreferrer">

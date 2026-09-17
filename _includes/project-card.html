@@ -3,6 +3,7 @@
   <header class="project-card-header">
     <p class="project-context">{{ project.context }}</p>
     <h3>{{ project.title }}</h3>
+    <p class="project-takeaway">{{ project.takeaway }}</p>
   </header>
 
   <div class="project-details">
@@ -11,7 +12,7 @@
       <p>{{ project.challenge }}</p>
     </div>
 
-    <div class="project-detail">
+    <div class="project-detail project-approach">
       <h4>Approach</h4>
       <ul>
         {% for item in project.approach %}
@@ -21,8 +22,12 @@
     </div>
 
     <div class="project-detail project-outcome">
-      <h4>Outcome</h4>
-      <p>{{ project.outcome }}</p>
+      <h4>Outcomes</h4>
+      <ul>
+        {% for item in project.outcomes %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
       {% if project.note %}<p class="project-note">{{ project.note }}</p>{% endif %}
     </div>
   </div>
@@ -32,6 +37,7 @@
       {% for visual in project.images %}
         <figure>
           <img src="{{ visual.src | relative_url }}" alt="{{ visual.alt }}" loading="lazy">
+          {% if visual.caption %}<figcaption>{{ visual.caption }}</figcaption>{% endif %}
         </figure>
       {% endfor %}
     </div>
