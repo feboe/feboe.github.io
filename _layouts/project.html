@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<div class="project-page-shell">
+  <a class="project-page-back" href="{{ '/' | append: '#' | append: page.category | relative_url }}">
+    <span aria-hidden="true">←</span> Back to all projects
+  </a>
+  {% include project-detail.html project=page %}
+</div>

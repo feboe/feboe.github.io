@@ -34,9 +34,10 @@ permalink: /
         </div>
       </div>
 
-      <div class="project-grid{% if section.compact %} project-grid-compact{% endif %}">
-        {% for project in section.projects %}
-          {% include project-card.html project=project compact=section.compact %}
+      {% assign section_projects = site.projects | where: "category", section.id | sort: "order" %}
+      <div class="project-overview-grid">
+        {% for project in section_projects %}
+          {% include project-overview-card.html project=project %}
         {% endfor %}
       </div>
     </section>

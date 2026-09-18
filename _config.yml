@@ -8,6 +8,18 @@ repository: feboe/feboe.github.io
 remote_theme: yousinix/portfolYOU@v2.3.0
 open_new_tab: true
 
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+
 author:
   name: Felix Bötsch
   github: feboe

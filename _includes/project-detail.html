@@ -1,19 +1,19 @@
 {% assign project = include.project %}
-<article class="project-card{% if project.featured %} project-card-featured{% endif %}{% if include.compact %} project-card-compact{% endif %}">
+<article class="project-card project-detail-card{% if project.featured %} project-card-featured{% endif %}">
   <header class="project-card-header">
     <p class="project-context">{{ project.context }}</p>
-    <h3>{{ project.title }}</h3>
+    <h1>{{ project.title }}</h1>
     <p class="project-takeaway">{{ project.takeaway }}</p>
   </header>
 
   <div class="project-details">
     <div class="project-detail project-challenge">
-      <h4>Challenge</h4>
+      <h2>Challenge</h2>
       <p>{{ project.challenge }}</p>
     </div>
 
     <div class="project-detail project-approach">
-      <h4>Approach</h4>
+      <h2>Approach</h2>
       <ul>
         {% for item in project.approach %}
           <li>{{ item }}</li>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="project-detail project-outcome">
-      <h4>Outcomes</h4>
+      <h2>Outcomes</h2>
       <ul>
         {% for item in project.outcomes %}
           <li>{{ item }}</li>
@@ -44,9 +44,20 @@
   {% endif %}
 
   <footer class="project-card-footer">
-    <ul class="method-list" aria-label="Methods and technologies">
-      {% for method in project.methods %}<li>{{ method }}</li>{% endfor %}
-    </ul>
+    <div class="project-skill-groups">
+      <div class="project-skill-group">
+        <h2>Methods</h2>
+        <ul class="method-list">
+          {% for method in project.methods %}<li>{{ method }}</li>{% endfor %}
+        </ul>
+      </div>
+      <div class="project-skill-group">
+        <h2>Tools &amp; Technologies</h2>
+        <ul class="method-list">
+          {% for technology in project.technologies %}<li>{{ technology }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
     {% if project.repository %}
       <a class="repository-link" href="{{ project.repository }}" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-github" aria-hidden="true"></i>
